@@ -44,7 +44,7 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/oauth/confirm_access").setViewName("authorize");
+        //registry.addViewController("/oauth/confirm_access").setViewName("authorize");
     }
 
     public static void main(String[] args) {
@@ -101,13 +101,13 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
                     .secret("acmesecret")
                     .authorities("ROLE_CLIENT")
                     .authorizedGrantTypes("authorization_code", "refresh_token",
-                            "password").scopes("openid")
+                            "password").scopes("openid").autoApprove(true)
                     .and()
                     .withClient("demo")
                     .secret("demo")
                     .authorities("ROLE_CLIENT")
                     .authorizedGrantTypes("authorization_code", "refresh_token",
-                            "password").scopes("openid");
+                            "password").scopes("openid").autoApprove(true);
         }
 
         @Override
